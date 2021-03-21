@@ -14,7 +14,9 @@ public class RollTrackerCommands : IModule
     private MongoDataAccess mongo = new MongoDataAccess();
     
     [Command("fumble")]
-    public async Task Fumble(CommandContext ctx, DiscordUser user)
+    [Description("Attaches a fumble to the provided player- generally a natural 1")]
+    public async Task Fumble(CommandContext ctx, 
+        [Description("User that fumbled")]DiscordUser user)
     {
         try
         {
@@ -54,7 +56,9 @@ public class RollTrackerCommands : IModule
     }
 
     [Command("critical")]
-    public async Task Critical(CommandContext ctx, DiscordUser user)
+    [Description("Attaches a critical to the provided player- generally a natural 20")]
+    public async Task Critical(CommandContext ctx, 
+            [Description("User that criticalled")]DiscordUser user)
     {
         try
         {
@@ -94,6 +98,7 @@ public class RollTrackerCommands : IModule
     }
 
     [Command("report")]
+    [Description("Lists all criticals and fumbles for players on this server. ")]
     public async Task Report(CommandContext ctx)
     {
         ReadHistory(ctx.Guild);
