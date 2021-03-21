@@ -1,0 +1,25 @@
+version: '3'
+services:
+  dm_bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dm_bot
+    container_name: dm_bot
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    restart: unless-stopped
+  dnd_mongo:
+    image: mongo
+    container_name: dnd_mongo
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Chicago
+    volumes:
+      - ./mongo/database/dm_bot:/var/lib/postgresql/data
+    ports:
+      - 27017:27017
+    restart: unless-stopped
