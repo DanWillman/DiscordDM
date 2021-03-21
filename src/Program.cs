@@ -16,7 +16,6 @@ class Program
     private DiscordClient discord;
     private CommandsNextModule commands;
     private InteractivityModule interactivity;
-    private bool fridayMemeDone = false;
 
     static async Task Main(string[] args) => await new Program().InitBot(args);
 
@@ -97,6 +96,7 @@ class Program
     private async Task GuildConnected(DSharpPlus.EventArgs.GuildCreateEventArgs args)
     {
         System.Console.WriteLine($"Connected to server: {args.Guild.Name}");
+        var integrations = await args.Guild.GetIntegrationsAsync();
     }
 
     private DependencyCollection BuildDeps()
