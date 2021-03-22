@@ -19,7 +19,7 @@ services:
       - PGID=1000
       - TZ=America/Chicago
     volumes:
-      - ./mongo/database/dm_bot:/var/lib/postgresql/data
+      - ./mongo/database/dm_bot:/data/db
     ports:
       - 27017:27017
     restart: unless-stopped
